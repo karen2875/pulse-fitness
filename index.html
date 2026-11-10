@@ -345,11 +345,22 @@
       }
       .program {
         min-height: 270px;
-        padding: 30px;
+        padding: 0;
         border: 1px solid var(--line);
         border-radius: var(--radius);
         background: var(--surface2);
+        overflow: hidden;
         transition: transform 0.25s, border-color 0.25s;
+      }
+      .program-image {
+        display: block;
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: calc(var(--radius) - 1px) calc(var(--radius) - 1px) 0 0;
+      }
+      .program-content {
+        padding: 30px;
       }
       .program:hover {
         transform: translateY(-7px);
@@ -833,19 +844,40 @@
 
           <div class="program-grid">
             <article class="program">
-              <span class="program-number">01</span>
-              <h3>Силовые</h3>
-              <p>Тренировки с оборудованием для развития силы и общей физической формы.</p>
+              <img
+                class="program-image"
+                src="images/strength.jpg"
+                alt="Тренировка с отягощениями для развития силы"
+              />
+              <div class="program-content">
+                <span class="program-number">01</span>
+                <h3>Силовые</h3>
+                <p>Тренировки с оборудованием для развития силы и общей физической формы.</p>
+              </div>
             </article>
             <article class="program">
-              <span class="program-number">02</span>
-              <h3>Функциональные</h3>
-              <p>Динамичные занятия с упражнениями на координацию, мобильность и выносливость.</p>
+              <img
+                class="program-image"
+                src="images/functional.jpg"
+                alt="Функциональная тренировка с динамичными упражнениями"
+              />
+              <div class="program-content">
+                <span class="program-number">02</span>
+                <h3>Функциональные</h3>
+                <p>Динамичные занятия с упражнениями на координацию, мобильность и выносливость.</p>
+              </div>
             </article>
             <article class="program">
-              <span class="program-number">03</span>
-              <h3>Йога & Mobility</h3>
-              <p>Спокойный формат для работы с гибкостью, движением и расслаблением.</p>
+              <img
+                class="program-image"
+                src="images/yoga.jpg"
+                alt="Занятие йогой для гибкости и расслабления"
+              />
+              <div class="program-content">
+                <span class="program-number">03</span>
+                <h3>Йога &amp; Mobility</h3>
+                <p>Спокойный формат для работы с гибкостью, движением и расслаблением.</p>
+              </div>
             </article>
           </div>
         </div>
