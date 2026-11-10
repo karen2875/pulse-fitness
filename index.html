@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PULSE — современный фитнес-клуб. Тренировки, групповые занятия и персональный подход."
+    />
+    <title>PULSE — фитнес-клуб (превью)</title>
+    <style>
+      /* ===== base.css ===== */
+      :root {
+        --bg: #0d0f0e;
+        --surface: #151816;
+        --surface2: #1d211e;
+        --text: #f3f4ef;
+        --muted: #a7ada7;
+        --accent: #c8f23b;
+        --accent2: #9ecf20;
+        --line: rgba(255, 255, 255, 0.1);
+        --max: 1180px;
+        --radius: 24px;
+        --header-h: 76px;
+        --font: Arial, Helvetica, sans-serif;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--header-h);
+      }
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      button {
+        font: inherit;
+      }
+      address {
+        font-style: normal;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+      h2 {
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        line-height: 0.98;
+        letter-spacing: -0.055em;
+        margin-bottom: 18px;
+      }
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 16px;
+        z-index: 300;
+        padding: 12px 18px;
+        border-radius: 12px;
+        background: var(--accent);
+        color: #10130e;
+        font-weight: 800;
+        transition: top 0.2s;
+      }
+      .skip-link:focus {
+        top: 12px;
+      }
+      :focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* ===== layout.css ===== */
+      .container {
+        width: min(var(--max), calc(100% - 40px));
+        margin: auto;
+      }
+      .section {
+        padding: 95px 0;
+        scroll-margin-top: var(--header-h);
+        content-visibility: auto;
+        contain-intrinsic-size: auto 700px;
+      }
+      .label {
+        display: inline-block;
+        margin-bottom: 13px;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .intro {
+        max-width: 650px;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(13, 15, 14, 0.86);
+        border-bottom: 1px solid var(--line);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
+      .nav {
+        position: relative;
+        min-height: var(--header-h);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 900;
+        font-size: 1.25rem;
+        letter-spacing: -0.05em;
+      }
+      .logo-mark {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: var(--accent);
+        color: #10130e;
+      }
+      .nav-links {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+      .nav-links a {
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        padding: 11px 17px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #10130e;
+      }
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .nav-toggle-bar {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.2s, opacity 0.2s;
+      }
+      .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded='true'] .nav-toggle-bar:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .hero {
+        min-height: calc(100svh - var(--header-h));
+        min-height: calc(100dvh - var(--header-h));
+        display: grid;
+        align-items: center;
+        padding: 70px 0 90px;
+        overflow: hidden;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 65px;
+        align-items: center;
+      }
+      .tag {
+        display: inline-flex;
+        padding: 8px 13px;
+        margin-bottom: 22px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.83rem;
+        font-weight: 700;
+      }
+      .tag span {
+        width: 8px;
+        height: 8px;
+        margin: 5px 9px 0 0;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+      .hero h1 {
+        max-width: 720px;
+        margin-bottom: 24px;
+        font-size: clamp(3.4rem, 7vw, 7rem);
+        line-height: 0.86;
+        letter-spacing: -0.075em;
+      }
+      .accent {
+        color: var(--accent);
+      }
+      .hero-text {
+        max-width: 580px;
+        color: var(--muted);
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .hero-visual {
+        position: relative;
+        min-height: 530px;
+        overflow: hidden;
+        border-radius: 38px;
+        background: radial-gradient(circle at 50% 30%, rgba(200, 242, 59, 0.28), transparent 32%),
+          linear-gradient(145deg, #242a25, #101210);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      }
+      .hero-visual::before {
+        content: '';
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(200, 242, 59, 0.3);
+        border-radius: 50%;
+      }
+      .figure {
+        position: absolute;
+        left: 50%;
+        top: 51%;
+        transform: translate(-50%, -50%);
+        font-size: 11rem;
+        filter: grayscale(1);
+      }
+      .stat {
+        position: absolute;
+        padding: 15px 18px;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(21, 24, 22, 0.82);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+      }
+      .stat strong {
+        display: block;
+        font-size: 1.45rem;
+        color: var(--accent);
+      }
+      .stat small {
+        color: var(--muted);
+      }
+      .stat.one {
+        top: 35px;
+        left: 30px;
+      }
+      .stat.two {
+        right: 30px;
+        bottom: 35px;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: 70px;
+        align-items: start;
+      }
+      .about-copy p {
+        color: var(--muted);
+        font-size: 1.07rem;
+      }
+      .about-card {
+        margin-top: 28px;
+        padding: 28px;
+        border-radius: var(--radius);
+        background: var(--accent);
+        color: #10130e;
+      }
+      .about-card strong {
+        font-size: 2.5rem;
+        display: block;
+      }
+      .about-card p {
+        color: #39431f;
+        margin: 5px 0 0;
+      }
+      .programs {
+        background: var(--surface);
+      }
+      .program-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 45px;
+      }
+      .program {
+        min-height: 270px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface2);
+        transition: transform 0.25s, border-color 0.25s;
+      }
+      .program:hover {
+        transform: translateY(-7px);
+        border-color: rgba(200, 242, 59, 0.4);
+      }
+      .program-number {
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 900;
+      }
+      .program h3 {
+        font-size: 1.4rem;
+        margin: 55px 0 9px;
+      }
+      .program p {
+        color: var(--muted);
+        margin: 0;
+      }
+      .schedule-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 45px;
+      }
+      .class-card {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .time {
+        color: var(--accent);
+        font-weight: 900;
+      }
+      .class-card h3 {
+        margin: 9px 0 4px;
+      }
+      .class-card p {
+        color: var(--muted);
+        margin: 0;
+      }
+      .trainer {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+      .pricing {
+        background: var(--surface);
+      }
+      .price-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin-top: 45px;
+      }
+      .price-card {
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface2);
+      }
+      .price-card.featured {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+      .badge {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #10130e;
+        font-size: 0.7rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      .price-card h3 {
+        margin: 22px 0 5px;
+        font-size: 1.35rem;
+      }
+      .price {
+        margin-bottom: 24px;
+        font-size: 2.5rem;
+        font-weight: 900;
+      }
+      .price small {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-weight: 400;
+      }
+      .price-card ul {
+        padding: 0;
+        margin: 0 0 25px;
+        list-style: none;
+        color: var(--muted);
+      }
+      .price-card li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .price-card li::before {
+        content: '✓';
+        color: var(--accent);
+        font-weight: 900;
+        margin-right: 9px;
+      }
+      .promo-box {
+        position: relative;
+        overflow: hidden;
+        padding: 60px;
+        border-radius: 34px;
+        background: var(--accent);
+        color: #10130e;
+      }
+      .promo-box::after {
+        content: 'PULSE';
+        position: absolute;
+        right: -25px;
+        bottom: -50px;
+        font-size: 9rem;
+        font-weight: 900;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .promo-box h2 {
+        max-width: 700px;
+      }
+      .promo-box p {
+        max-width: 620px;
+        color: #39431f;
+      }
+      .contacts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        margin-top: 40px;
+      }
+      .contact-card {
+        padding: 32px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+      }
+      .row {
+        display: flex;
+        gap: 15px;
+        margin: 20px 0;
+      }
+      .icon {
+        flex: 0 0 48px;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 14px;
+        background: var(--surface2);
+        color: var(--accent);
+        font-size: 1.2rem;
+      }
+      .row p,
+      .row address {
+        margin: 3px 0 0;
+        color: var(--muted);
+      }
+      .row a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .map {
+        min-height: 330px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--surface2);
+      }
+      .map iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 330px;
+        border: 0;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 30px 0;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      /* ===== components.css ===== */
+      .btn {
+        min-height: 50px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-weight: 800;
+        transition: transform 0.2s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+      .primary {
+        background: var(--accent);
+        color: #10130e;
+      }
+      .secondary {
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+      }
+      .signup-form {
+        position: relative;
+        z-index: 1;
+        margin-top: 30px;
+        max-width: 720px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .form-field label {
+        font-size: 0.85rem;
+        font-weight: 800;
+      }
+      .optional {
+        font-weight: 400;
+        opacity: 0.7;
+      }
+      .form-field input,
+      .form-field select {
+        width: 100%;
+        min-height: 50px;
+        padding: 0 16px;
+        border: 2px solid transparent;
+        border-radius: 14px;
+        background: #ffffff;
+        color: #10130e;
+        font: inherit;
+        font-weight: 600;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .form-field input::placeholder {
+        color: #8a8f86;
+      }
+      .form-field input:focus,
+      .form-field select:focus {
+        outline: none;
+        border-color: #10130e;
+        box-shadow: 0 0 0 3px rgba(16, 19, 14, 0.15);
+      }
+      .form-field input[aria-invalid='true'],
+      .form-field select[aria-invalid='true'] {
+        border-color: #b3261e;
+      }
+      .error {
+        min-height: 1em;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #7a1f18;
+      }
+      .form-submit {
+        background: #10130e;
+        color: #ffffff;
+        margin-top: 6px;
+      }
+      .form-note {
+        margin: 14px 0 0;
+        font-size: 0.8rem;
+        color: #39431f;
+      }
+      .toast {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 200;
+        max-width: 330px;
+        padding: 15px 18px;
+        border-radius: 15px;
+        background: #f3f4ef;
+        color: #10130e;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: opacity 0.3s, transform 0.3s;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===== responsive.css ===== */
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid,
+        .contacts {
+          grid-template-columns: 1fr;
+        }
+        .program-grid,
+        .schedule-grid,
+        .price-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero-visual {
+          min-height: 400px;
+        }
+      }
+      @media (max-width: 650px) {
+        :root {
+          --header-h: 68px;
+        }
+        .container {
+          width: calc(100% - 28px);
+        }
+        .section {
+          padding: 70px 0;
+        }
+        .nav {
+          min-height: var(--header-h);
+        }
+        .nav-toggle {
+          display: flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          padding: 10px 20px 20px;
+          background: var(--surface);
+          border-bottom: 1px solid var(--line);
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-links a {
+          padding: 13px 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .nav-links a:last-child {
+          border-bottom: 0;
+        }
+        .nav-cta {
+          margin-top: 10px;
+          text-align: center;
+        }
+        .hero h1 {
+          font-size: clamp(3.2rem, 16vw, 5rem);
+        }
+        .program-grid,
+        .schedule-grid,
+        .price-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-visual {
+          min-height: 340px;
+        }
+        .figure {
+          font-size: 8rem;
+        }
+        .promo-box {
+          padding: 40px 25px;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .footer {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+    <header class="header">
+      <nav class="nav container" aria-label="Основная навигация">
+        <a class="logo" href="#home" aria-label="PULSE — на главную">
+          <span class="logo-mark" aria-hidden="true">P</span>PULSE
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-links"
+          aria-label="Открыть меню"
+        >
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+          <span class="nav-toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="#about">О клубе</a>
+          <a href="#programs">Программы</a>
+          <a href="#schedule">Расписание</a>
+          <a href="#pricing">Абонементы</a>
+          <a class="nav-cta" href="#signup">Записаться</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div>
+            <div class="tag"><span aria-hidden="true"></span>Фитнес-клуб нового поколения</div>
+            <h1 id="hero-title">Стань сильнее. <span class="accent">Двигайся дальше.</span></h1>
+            <p class="hero-text">
+              PULSE — пространство для тренировок, восстановления и новых целей. Выбирай
+              подходящую программу и занимайся в своём темпе.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#pricing">Выбрать абонемент →</a>
+              <a class="btn secondary" href="#programs">Наши программы</a>
+            </div>
+          </div>
+
+          <div class="hero-visual" role="img" aria-label="Иллюстрация: гантель на фоне клуба">
+            <div class="stat one"><strong>24/7</strong><small>доступ к клубу</small></div>
+            <div class="figure" aria-hidden="true">🏋️</div>
+            <div class="stat two"><strong>12+</strong><small>направлений тренировок</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <div class="container about-grid">
+          <div>
+            <span class="label">01 — О клубе</span>
+            <h2 id="about-title">Тренировки, которые вписываются в твою жизнь.</h2>
+          </div>
+          <div class="about-copy">
+            <p>
+              PULSE создан для людей с разными целями: кто-то хочет стать выносливее, кто-то —
+              освоить новую активность, а кому-то просто важно регулярно двигаться.
+            </p>
+            <p>
+              В клубе есть зоны для самостоятельных тренировок, групповые занятия и персональные
+              тренировки с инструктором. Главное — комфортная среда и понятный путь к своим целям.
+            </p>
+            <div class="about-card">
+              <strong>1500 м²</strong>
+              <p>пространства для тренировок, отдыха и восстановления</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section programs" id="programs" aria-labelledby="programs-title">
+        <div class="container">
+          <span class="label">02 — Программы</span>
+          <h2 id="programs-title">Выбирай свой формат.</h2>
+          <p class="intro">
+            Разные направления помогают сделать тренировки разнообразными и найти то, что подходит
+            именно тебе.
+          </p>
+
+          <div class="program-grid">
+            <article class="program">
+              <span class="program-number">01</span>
+              <h3>Силовые</h3>
+              <p>Тренировки с оборудованием для развития силы и общей физической формы.</p>
+            </article>
+            <article class="program">
+              <span class="program-number">02</span>
+              <h3>Функциональные</h3>
+              <p>Динамичные занятия с упражнениями на координацию, мобильность и выносливость.</p>
+            </article>
+            <article class="program">
+              <span class="program-number">03</span>
+              <h3>Йога & Mobility</h3>
+              <p>Спокойный формат для работы с гибкостью, движением и расслаблением.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="schedule" aria-labelledby="schedule-title">
+        <div class="container">
+          <span class="label">03 — Расписание</span>
+          <h2 id="schedule-title">Занятия на этой неделе.</h2>
+
+          <div class="schedule-grid">
+            <article class="class-card">
+              <div class="time">09:00</div>
+              <h3>Functional</h3>
+              <p>Понедельник · Большой зал</p>
+              <div class="trainer">Тренер: Алексей</div>
+            </article>
+            <article class="class-card">
+              <div class="time">18:30</div>
+              <h3>Yoga Flow</h3>
+              <p>Среда · Studio 02</p>
+              <div class="trainer">Тренер: Мария</div>
+            </article>
+            <article class="class-card">
+              <div class="time">19:30</div>
+              <h3>Strength</h3>
+              <p>Пятница · Силовая зона</p>
+              <div class="trainer">Тренер: Дмитрий</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing" aria-labelledby="pricing-title">
+        <div class="container">
+          <span class="label">04 — Абонементы</span>
+          <h2 id="pricing-title">Формат под твой ритм.</h2>
+
+          <div class="price-grid">
+            <article class="price-card">
+              <h3>Start</h3>
+              <div class="price">2 990 ₽ <small>/ мес.</small></div>
+              <ul>
+                <li>Доступ в клуб</li>
+                <li>Тренажёрный зал</li>
+                <li>Базовая консультация</li>
+              </ul>
+              <button class="btn secondary" type="button" data-plan="Start">Выбрать</button>
+            </article>
+
+            <article class="price-card featured">
+              <span class="badge">Популярный</span>
+              <h3>Progress</h3>
+              <div class="price">4 490 ₽ <small>/ мес.</small></div>
+              <ul>
+                <li>Всё из Start</li>
+                <li>Групповые занятия</li>
+                <li>2 консультации тренера</li>
+              </ul>
+              <button class="btn primary" type="button" data-plan="Progress">Выбрать</button>
+            </article>
+
+            <article class="price-card">
+              <h3>Personal</h3>
+              <div class="price">7 990 ₽ <small>/ мес.</small></div>
+              <ul>
+                <li>Всё из Progress</li>
+                <li>Персональные тренировки</li>
+                <li>Индивидуальный план</li>
+              </ul>
+              <button class="btn secondary" type="button" data-plan="Personal">Выбрать</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="signup" aria-labelledby="signup-title">
+        <div class="container">
+          <div class="promo-box">
+            <span class="label">05 — Первый шаг</span>
+            <h2 id="signup-title">Первое посещение — бесплатно.</h2>
+            <p>
+              Познакомься с клубом, посмотри пространство и попробуй тренировку без обязательств.
+            </p>
+
+            <form class="signup-form" id="signup-form" novalidate>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Имя</label>
+                  <input type="text" id="name" name="name" autocomplete="name" required />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+                <div class="form-field">
+                  <label for="phone">Телефон</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                    placeholder="+7 (___) ___-__-__"
+                    required
+                  />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="email">Email <span class="optional">(необязательно)</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+                <div class="form-field">
+                  <label for="plan">Интересующий абонемент</label>
+                  <select id="plan" name="plan">
+                    <option value="trial" selected>Пробное посещение</option>
+                    <option value="Start">Start — 2 990 ₽/мес</option>
+                    <option value="Progress">Progress — 4 490 ₽/мес</option>
+                    <option value="Personal">Personal — 7 990 ₽/мес</option>
+                  </select>
+                  <span class="error" aria-live="polite"></span>
+                </div>
+              </div>
+              <button class="btn form-submit" type="submit">Записаться на пробное</button>
+              <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contacts" aria-labelledby="contacts-title">
+        <div class="container">
+          <span class="label">06 — Контакты</span>
+          <h2 id="contacts-title">Ждём тебя в PULSE.</h2>
+
+          <div class="contacts">
+            <div class="contact-card">
+              <div class="row">
+                <div class="icon" aria-hidden="true">⌖</div>
+                <div>
+                  <strong>Адрес</strong>
+                  <address>
+                    ул. Спортивная, 24<br />
+                    Москва
+                  </address>
+                </div>
+              </div>
+              <div class="row">
+                <div class="icon" aria-hidden="true">◷</div>
+                <div>
+                  <strong>График</strong>
+                  <p>Пн–Вс: круглосуточно</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="icon" aria-hidden="true">☎</div>
+                <div>
+                  <strong>Телефон</strong>
+                  <p><a href="tel:+79005552020">+7 (900) 555-20-20</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="map">
+              <iframe
+                src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%A1%D0%BF%D0%BE%D1%80%D1%82%D0%B8%D0%B2%D0%BD%D0%B0%D1%8F%2C%2024&z=16"
+                title="Карта: PULSE, ул. Спортивная, 24, Москва"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer">
+        <span>© 2026 PULSE Fitness</span>
+        <span>Двигайся. Развивайся. Повторяй.</span>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      (function () {
+        'use strict';
+
+        /* ===== toast.js ===== */
+        var toast = document.getElementById('toast');
+        var timer = null;
+
+        function showToast(message) {
+          if (!toast) return;
+          toast.textContent = message;
+          toast.classList.add('show');
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            toast.classList.remove('show');
+          }, 3000);
+        }
+
+        /* ===== nav.js ===== */
+        function initNav() {
+          var toggle = document.querySelector('.nav-toggle');
+          var links = document.getElementById('nav-links');
+          if (!toggle || !links) return;
+
+          function closeMenu() {
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-label', 'Открыть меню');
+            links.classList.remove('open');
+          }
+
+          toggle.addEventListener('click', function () {
+            var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!isOpen));
+            toggle.setAttribute('aria-label', isOpen ? 'Открыть меню' : 'Закрыть меню');
+            links.classList.toggle('open', !isOpen);
+          });
+
+          links.addEventListener('click', function (event) {
+            if (event.target.closest('a')) closeMenu();
+          });
+
+          document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && links.classList.contains('open')) closeMenu();
+          });
+        }
+
+        /* ===== form.js ===== */
+        var PHONE_PATTERN = /^\+?[0-9\s()-]{10,18}$/;
+
+        function initForm() {
+          var form = document.getElementById('signup-form');
+          if (!form) return;
+
+          document.querySelectorAll('[data-plan]').forEach(function (button) {
+            button.addEventListener('click', function () {
+              var planSelect = form.elements['plan'];
+              if (planSelect) planSelect.value = button.dataset.plan;
+              form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              setTimeout(function () {
+                var nameField = form.elements['name'];
+                if (nameField) nameField.focus();
+              }, 400);
+            });
+          });
+
+          form.querySelectorAll('input, select').forEach(function (field) {
+            field.addEventListener('input', function () {
+              validateField(field);
+            });
+          });
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (!validateForm(form)) return;
+            var data = Object.fromEntries(new FormData(form).entries());
+            console.log('Заявка:', data);
+            form.reset();
+            showToast('Заявка отправлена! Мы свяжемся с вами.');
+          });
+        }
+
+        function validateForm(form) {
+          var valid = true;
+          form.querySelectorAll('input, select').forEach(function (field) {
+            if (!validateField(field)) valid = false;
+          });
+          return valid;
+        }
+
+        function validateField(field) {
+          var error = field.parentElement.querySelector('.error');
+          var message = '';
+
+          if (field.required && !field.value.trim()) {
+            message = 'Поле обязательно для заполнения';
+          } else if (field.type === 'email' && field.value && field.value.indexOf('@') === -1) {
+            message = 'Введите корректный email';
+          } else if (field.type === 'tel' && field.value && !PHONE_PATTERN.test(field.value)) {
+            message = 'Введите корректный номер телефона';
+          }
+
+          field.setAttribute('aria-invalid', message ? 'true' : 'false');
+          if (error) error.textContent = message;
+          return !message;
+        }
+
+        /* ===== main.js ===== */
+        initNav();
+        initForm();
+      })();
+    </script>
+  </body>
+</html>
